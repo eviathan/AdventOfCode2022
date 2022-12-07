@@ -54,7 +54,10 @@ namespace AdventOfCode2022.Day1
                 }
             }
 
-            var topThreeTotalCalories = caloriesCounts.OrderByDescending(x => x).Take(3).Sum();
+            var topThreeTotalCalories = caloriesCounts
+                .OrderByDescending(x => x)
+                .Take(3)
+                .Sum();
 
             return topThreeTotalCalories;
         }
