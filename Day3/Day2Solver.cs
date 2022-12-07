@@ -88,16 +88,17 @@ namespace AdventOfCode2022.Day3
 
         private IEnumerable<char> GetStickers(IEnumerable<string> lineBatch)
         {
+            var lineCount = lineBatch.Count();
             var duplicates = string.Join(string.Empty, lineBatch)
                 .GroupBy(x => x)
-                .Where(x => x.Count() >= 3)
+                .Where(x => x.Count() >= lineCount)
                 .Select(x => x.Key)
                 .ToDictionary(
                     x => x, 
-                    x => Enumerable.Repeat(false, lineBatch.Count()).ToList()
+                    x => Enumerable.Repeat(false, lineCount).ToList()
                 );
 
-            for (int i = 0; i < lineBatch.Count(); i++)
+            for (int i = 0; i < lineCount; i++)
             {
                 var line = lineBatch.ToList()[i];
                 foreach (var character in line)
