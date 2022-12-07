@@ -71,19 +71,12 @@ namespace AdventOfCode2022.Day3
 
     public class Day3Part2Solver : IDaySolver<int>
     {
-        public class Batch
-        {
-            public bool InBagA { get; set; }
-            public bool InBagB { get; set; }
-            public bool InBagC { get; set; }
-        }
-
         public int Solve()
         {            
             var lines = File.ReadAllLines("Day3/input");
             var total = 0;
 
-            for (int i = 0; i < lines.Count(); i+=3)
+            for (int i = 0; i < lines.Count(); i += 3)
             {
                 var lineBatch = lines.Skip(i).Take(3);
                 var stickers = GetStickers(lineBatch);
@@ -101,7 +94,7 @@ namespace AdventOfCode2022.Day3
                 .Select(x => x.Key)
                 .ToDictionary(
                     x => x, 
-                    x => new List<bool> { false, false, false }
+                    x => Enumerable.Repeat(false, lineBatch.Count()).ToList()
                 );
 
             for (int i = 0; i < lineBatch.Count(); i++)
